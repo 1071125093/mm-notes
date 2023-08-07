@@ -1,5 +1,5 @@
 ---
-description: '茂茂的 Visual Studio Code 配置，记录扩展插件、使用小技巧和个人配置'
+description: '潇军的 Visual Studio Code 配置，记录扩展插件、使用小技巧和个人配置'
 ---
 
 # Visual Studio Code 配置
@@ -397,18 +397,7 @@ code [文件名]
   "eslint.options": {
     "extensions": [".js", ".jsx", ".ts", ".tsx", ".vue"]
   },
-  "eslint.validate": [
-    "javascript",
-    "javascriptreact",
-    "typescript",
-    "typescriptreact",
-    "html",
-    "vue",
-    "markdown",
-    "json",
-    "jsonc",
-    "json5"
-  ],
+  "eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact", "html", "vue", "markdown", "json", "jsonc", "json5"],
   /** prettier 配置 */
   // 是否每行末尾添加分号
   "prettier.semi": false,

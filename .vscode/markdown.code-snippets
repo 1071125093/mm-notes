@@ -59,5 +59,13 @@
       ":::"
     ],
     "description": "vitepress 自定义容器 details"
-  }
+  },
+  "vitepress include引用子md": {
+    "scope": "markdown",
+    "prefix": "include",
+    "body": [
+      "<!--@include: $1-->"
+    ],
+    "description": "vitepress include引用子md"
+  },
 }

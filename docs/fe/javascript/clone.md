@@ -25,41 +25,41 @@
 ```js
 const obj1 = {
   name: 'maomao',
-  props: { a: 1 }
-}
+  props: { a: 1 },
+};
 
-const obj2 = Object.assign({}, obj1)
-obj2.name = '茂茂'
-obj2.props.a++
+const obj2 = Object.assign({}, obj1);
+obj2.name = '潇军';
+obj2.props.a++;
 
-obj1 // { name: 'maomao', props: { a: 2 } }
-obj2 // { name: '茂茂', props: { a: 2 } }
+obj1; // { name: 'maomao', props: { a: 2 } }
+obj2; // { name: '潇军', props: { a: 2 } }
 ```
 
 ### `Array.prototype.concat()`
 
 ```js
-const arr1 = [1, 2, 3, [4, 5]]
+const arr1 = [1, 2, 3, [4, 5]];
 
-const arr2 = arr1.concat()
-arr2[0] = 'arr2'
-arr2[3][0] = 'arr2'
+const arr2 = arr1.concat();
+arr2[0] = 'arr2';
+arr2[3][0] = 'arr2';
 
-arr1 // [1, 2, 3, ['arr2', 5]];
-arr2 // ['arr2', 2, 3, ['arr2', 5]];
+arr1; // [1, 2, 3, ['arr2', 5]];
+arr2; // ['arr2', 2, 3, ['arr2', 5]];
 ```
 
 ### `Array.prototype.slice()`
 
 ```js
-const arr1 = [1, 2, 3, [4, 5]]
+const arr1 = [1, 2, 3, [4, 5]];
 
-const arr2 = arr1.slice()
-arr2[0] = 'arr2'
-arr2[3][0] = 'arr2'
+const arr2 = arr1.slice();
+arr2[0] = 'arr2';
+arr2[3][0] = 'arr2';
 
-arr1 // [1, 2, 3, ['arr2', 5]];
-arr2 // ['arr2', 2, 3, ['arr2', 5]];
+arr1; // [1, 2, 3, ['arr2', 5]];
+arr2; // ['arr2', 2, 3, ['arr2', 5]];
 ```
 
 ### `ES6` 扩展运算符
@@ -68,25 +68,25 @@ arr2 // ['arr2', 2, 3, ['arr2', 5]];
 /* 对象 */
 const obj1 = {
   name: 'maomao',
-  props: { a: 1 }
-}
+  props: { a: 1 },
+};
 
-const obj2 = { ...obj1 }
-obj2.name = '茂茂'
-obj2.props.a++
+const obj2 = { ...obj1 };
+obj2.name = '潇军';
+obj2.props.a++;
 
-obj1 // { name: 'maomao', props: { a: 2 } }
-obj2 // { name: '茂茂', props: { a: 2 } }
+obj1; // { name: 'maomao', props: { a: 2 } }
+obj2; // { name: '潇军', props: { a: 2 } }
 
 /* 数组 */
-const arr1 = [1, 2, 3, [4, 5]]
+const arr1 = [1, 2, 3, [4, 5]];
 
-const arr2 = [...arr1]
-arr2[0] = 'arr2'
-arr2[3][0] = 'arr2'
+const arr2 = [...arr1];
+arr2[0] = 'arr2';
+arr2[3][0] = 'arr2';
 
-arr1 // [1, 2, 3, ['arr2', 5]];
-arr2 // ['arr2', 2, 3, ['arr2', 5]];
+arr1; // [1, 2, 3, ['arr2', 5]];
+arr2; // ['arr2', 2, 3, ['arr2', 5]];
 ```
 
 ## 深拷贝
@@ -100,15 +100,15 @@ arr2 // ['arr2', 2, 3, ['arr2', 5]];
 ```js
 const obj1 = {
   name: 'maomao',
-  props: { a: 1 }
-}
+  props: { a: 1 },
+};
 
-const obj2 = JSON.parse(JSON.stringify(obj1))
-obj2.name = '茂茂'
-obj2.props.a++
+const obj2 = JSON.parse(JSON.stringify(obj1));
+obj2.name = '潇军';
+obj2.props.a++;
 
-obj1 // { name: 'maomao', props: { a: 1 } }
-obj2 // { name: '茂茂', props: { a: 2 } }
+obj1; // { name: 'maomao', props: { a: 1 } }
+obj2; // { name: '潇军', props: { a: 2 } }
 ```
 
 **`JSON.parse(JSON.stringify())` 存在明显的弊端：**
@@ -121,8 +121,8 @@ obj2 // { name: '茂茂', props: { a: 2 } }
 - 循环引用的对象将报错
 
 ```js
-const map = new Map()
-map.set(1, 2) // Map: 0: {1 => 2}
+const map = new Map();
+map.set(1, 2); // Map: 0: {1 => 2}
 const obj1 = {
   a: undefined,
   b: null,
@@ -132,13 +132,13 @@ const obj1 = {
   f: -Infinity,
   g: map,
   h: new Date(),
-  i: () => {}
-}
+  i: () => {},
+};
 Object.defineProperty(obj1, 'j', {
-  value: 'string'
-})
+  value: 'string',
+});
 
-const obj2 = JSON.parse(JSON.stringify(obj1))
+const obj2 = JSON.parse(JSON.stringify(obj1));
 
 /** 源对象 obj1
 {
@@ -173,14 +173,14 @@ const obj2 = JSON.parse(JSON.stringify(obj1))
 > `HTML` 规范标准的 [Web API](https://developer.mozilla.org/zh-CN/docs/Web/API/structuredClone)
 
 ```js
-const original = { name: 'MDN' }
-original.itself = original
+const original = { name: 'MDN' };
+original.itself = original;
 
-const clone = structuredClone(original)
+const clone = structuredClone(original);
 
-console.assert(clone !== original) // the objects are not the same (not same identity)
-console.assert(clone.name === 'MDN') // they do have the same values
-console.assert(clone.itself === clone) // and the circular reference is preserved
+console.assert(clone !== original); // the objects are not the same (not same identity)
+console.assert(clone.name === 'MDN'); // they do have the same values
+console.assert(clone.itself === clone); // and the circular reference is preserved
 ```
 
 `HTML` 规范的标准提案，使用结构化克隆算法将给定的值进行深拷贝，支持循环引用。还可以使用 `structuredClone(value, { transfer })` 调用方式使可转移对象仅被传递，不被克隆（直接移动源数据）
@@ -202,10 +202,10 @@ console.assert(clone.itself === clone) // and the circular reference is preserve
 ```js
 function cloneUsingChannel(obj) {
   return new Promise((resolve) => {
-    const channel = new MessageChannel()
-    channel.port1.onmessage = (e) => resolve(e.data)
-    channel.port2.postMessage(obj)
-  })
+    const channel = new MessageChannel();
+    channel.port1.onmessage = (e) => resolve(e.data);
+    channel.port2.postMessage(obj);
+  });
 }
 ```
 
@@ -213,24 +213,24 @@ function cloneUsingChannel(obj) {
 
 ```js
 const obj1 = {
-  fn: function () {}
-}
-const obj2 = cloneUsingChannel(obj1)
+  fn: function () {},
+};
+const obj2 = cloneUsingChannel(obj1);
 // Uncaught (in promise) DOMException: Failed to execute 'postMessage' on 'MessagePort': function () {} could not be cloned.
 ```
 
 ### `JQuery.extend()`
 
 ```js
-import $ from 'jquery'
+import $ from 'jquery';
 
-const obj2 = $.extend(true, {}, obj1)
+const obj2 = $.extend(true, {}, obj1);
 ```
 
 ### `lodash.cloneDeep`
 
 ```js
-import { cloneDeep } from 'lodash-es'
+import { cloneDeep } from 'lodash-es';
 
-const obj2 = cloneDeep(obj1)
+const obj2 = cloneDeep(obj1);
 ```

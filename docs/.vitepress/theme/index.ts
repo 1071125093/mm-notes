@@ -1,22 +1,24 @@
-import { h, watch } from 'vue'
-import { useData, EnhanceAppContext } from 'vitepress'
-import DefaultTheme from 'vitepress/theme'
+import { h, watch } from 'vue';
+import { useData, EnhanceAppContext } from 'vitepress';
+import DefaultTheme from 'vitepress/theme';
 
-import MNavVisitor from './components/MNavVisitor.vue'
-import MDocFooter from './components/MDocFooter.vue'
-import MAsideSponsors from './components/MAsideSponsors.vue'
-import MNavLinks from './components/MNavLinks.vue'
+import MNavVisitor from './components/MNavVisitor.vue';
+import MDocFooter from './components/MDocFooter.vue';
+import MAsideSponsors from './components/MAsideSponsors.vue';
+import MNavLinks from './components/MNavLinks.vue';
+import { install } from 'naive-ui';
+import componentsInstall from '@/components/index';
 
-import './styles/index.scss'
+import './styles/index.scss';
 
 if (typeof window !== 'undefined') {
   /* 注销 PWA 服务 */
   if (window.navigator && navigator.serviceWorker) {
     navigator.serviceWorker.getRegistrations().then(function (registrations) {
       for (let registration of registrations) {
-        registration.unregister()
+        registration.unregister();
       }
-    })
+    });
   }
 
   /* 删除浏览器中的缓存 */
@@ -24,25 +26,25 @@ if (typeof window !== 'undefined') {
     caches.keys().then(function (keyList) {
       return Promise.all(
         keyList.map(function (key) {
-          return caches.delete(key)
-        })
-      )
-    })
+          return caches.delete(key);
+        }),
+      );
+    });
   }
 }
 
-let homePageStyle: HTMLStyleElement | undefined
+let homePageStyle: HTMLStyleElement | undefined;
 
 export default {
   extends: DefaultTheme,
   Layout: () => {
-    const props: Record<string, any> = {}
+    const props: Record<string, any> = {};
     // 获取 frontmatter
-    const { frontmatter } = useData()
+    const { frontmatter } = useData();
 
     /* 添加自定义 class */
     if (frontmatter.value?.layoutClass) {
-      props.class = frontmatter.value.layoutClass
+      props.class = frontmatter.value.layoutClass;
     }
 
     return h(DefaultTheme.Layout, props, {
@@ -53,51 +55,51 @@ export default {
        */
       'nav-bar-title-after': () => h(MNavVisitor),
       'doc-after': () => h(MDocFooter),
-      'aside-bottom': () => h(MAsideSponsors)
-    })
+      'aside-bottom': () => h(MAsideSponsors),
+    });
   },
   enhanceApp({ app, router }: EnhanceAppContext) {
-    app.component('MNavLinks', MNavLinks)
-
-    app.provide('DEV', process.env.NODE_ENV === 'development')
-
+    app.component('MNavLinks', MNavLinks);
+    app.provide('DEV', process.env.NODE_ENV === 'development');
+    app.use(install);
+    app.use(componentsInstall);
     if (typeof window !== 'undefined') {
       watch(
         () => router.route.data.relativePath,
         () => updateHomePageStyle(location.pathname === '/'),
-        { immediate: true }
-      )
+        { immediate: true },
+      );
     }
-  }
-}
+  },
+};
 
 if (typeof window !== 'undefined') {
   // detect browser, add to class for conditional styling
-  const browser = navigator.userAgent.toLowerCase()
+  const browser = navigator.userAgent.toLowerCase();
   if (browser.includes('chrome')) {
-    document.documentElement.classList.add('browser-chrome')
+    document.documentElement.classList.add('browser-chrome');
   } else if (browser.includes('firefox')) {
-    document.documentElement.classList.add('browser-firefox')
+    document.documentElement.classList.add('browser-firefox');
   } else if (browser.includes('safari')) {
-    document.documentElement.classList.add('browser-safari')
+    document.documentElement.classList.add('browser-safari');
   }
 }
 
 // Speed up the rainbow animation on home page
 function updateHomePageStyle(value: boolean) {
   if (value) {
-    if (homePageStyle) return
+    if (homePageStyle) return;
 
-    homePageStyle = document.createElement('style')
+    homePageStyle = document.createElement('style');
     homePageStyle.innerHTML = `
     :root {
       animation: rainbow 12s linear infinite;
-    }`
-    document.body.appendChild(homePageStyle)
+    }`;
+    document.body.appendChild(homePageStyle);
   } else {
-    if (!homePageStyle) return
+    if (!homePageStyle) return;
 
-    homePageStyle.remove()
-    homePageStyle = undefined
+    homePageStyle.remove();
+    homePageStyle = undefined;
   }
 }

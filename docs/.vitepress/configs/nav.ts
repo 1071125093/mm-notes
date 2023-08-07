@@ -1,5 +1,6 @@
-import type { DefaultTheme } from 'vitepress'
+import type { DefaultTheme } from 'vitepress';
 
+// 我这里link的是md文档地址
 export const nav: DefaultTheme.Config['nav'] = [
   { text: '导航', link: '/nav', activeMatch: '^/nav' },
   {
@@ -8,9 +9,9 @@ export const nav: DefaultTheme.Config['nav'] = [
       { text: 'JavaScript 基础知识', link: '/fe/javascript/types' },
       { text: 'ES6 常用知识', link: '/fe/es6/' },
       { text: 'TypeScript 基础知识', link: '/fe/typescript/base' },
-      { text: '浏览器相关知识', link: '/fe/browser/' }
+      { text: '浏览器相关知识', link: '/fe/browser/' },
     ],
-    activeMatch: '^/fe'
+    activeMatch: '^/fe',
   },
   { text: '源码阅读', link: '/analysis/utils/only-allow', activeMatch: '^/analysis' },
   {
@@ -21,20 +22,20 @@ export const nav: DefaultTheme.Config['nav'] = [
         items: [
           { text: '工具库整理', link: '/workflow/utils/library' },
           { text: '常用正则整理', link: '/workflow/utils/regexp' },
-          { text: '常用方法整理', link: '/workflow/utils/function' }
-        ]
+          { text: '常用方法整理', link: '/workflow/utils/function' },
+        ],
       },
       {
         text: 'CSS 相关',
         items: [
           { text: 'CSS 语法', link: '/workflow/css/spec' },
           { text: 'CSS 奇淫技巧', link: '/workflow/css/tricks' },
-          { text: 'Sass 常用技巧', link: '/workflow/sass/' }
-        ]
+          { text: 'Sass 常用技巧', link: '/workflow/sass/' },
+        ],
       },
       {
         text: 'Vue 小技巧',
-        link: '/workflow/vue/'
+        link: '/workflow/vue/',
       },
       { text: 'npm 常用命令', link: '/workflow/node/npm' },
       // {
@@ -46,9 +47,9 @@ export const nav: DefaultTheme.Config['nav'] = [
       //   ]
       // },
       { text: 'Git 相关技巧', link: '/workflow/git/' },
-      { text: 'Git 命令清单', link: '/workflow/git/command' }
+      { text: 'Git 命令清单', link: '/workflow/git/command' },
     ],
-    activeMatch: '^/workflow'
+    activeMatch: '^/workflow',
   },
   { text: '踩坑记录', link: '/pit/npm', activeMatch: '^/pit' },
   {
@@ -62,27 +63,38 @@ export const nav: DefaultTheme.Config['nav'] = [
           { text: 'Windows 平台', link: '/efficiency/software/windows' },
           { text: '浏览器设置与扩展', link: '/efficiency/software/browser' },
           { text: 'Visual Studio Code 配置', link: '/efficiency/software/vscode' },
-          { text: 'WebStorm 配置', link: '/efficiency/software/webstorm' }
-        ]
+          { text: 'WebStorm 配置', link: '/efficiency/software/webstorm' },
+        ],
       },
       { text: '在线工具', link: '/efficiency/online-tools' },
-      { text: '书签脚本', link: '/efficiency/bookmark-scripts' }
+      { text: '书签脚本', link: '/efficiency/bookmark-scripts' },
     ],
-    activeMatch: '^/efficiency'
+    activeMatch: '^/efficiency',
   },
   {
-    text: '茂茂',
+    text: '潇军',
     items: [
       { text: '个人主页', link: 'https://fe-mm.com' },
       {
         text: '日常笔记',
-        link: 'https://github.com/maomao1996/daily-notes'
+        link: 'https://github.com/maomao1996/daily-notes',
       },
       { text: 'mmPlayer', link: 'https://netease-music.fe-mm.com' },
       {
         text: '油猴脚本',
-        link: 'https://github.com/maomao1996/tampermonkey-scripts'
-      }
-    ]
-  }
-]
+        link: 'https://github.com/maomao1996/tampermonkey-scripts',
+      },
+    ],
+  },
+  {
+    text: '一级菜单',
+    // link: '/asd',
+    items: [
+      {
+        text: '二级菜单',
+        link: '/asd/shard1/',
+      },
+    ],
+    activeMatch: '^/asd',
+  },
+];
