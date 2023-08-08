@@ -1,3 +1,10 @@
-### 常规用法呜呜呜出现 12312312213
+### 常规用法呜呜呜出现
 
-<FsTestOne name="参数传入成功"></FsTestOne>
+<script lang="ts" setup>
+const bobo = reactive({
+  name:'我是来自bobo的参数'
+})
+
+</script>
+
+<FsTestOne :name="bobo.name"></FsTestOne>

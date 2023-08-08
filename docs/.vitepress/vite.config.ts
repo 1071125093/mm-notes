@@ -31,11 +31,21 @@ export default {
         // '@vueuse/core',
         // 'vue-i18n', ,
       ],
+      include: [
+        /\.[tj]sx?$/, // .ts, .tsx, .js, .jsx
+        /\.vue$/,
+        /\.md$/, // .md
+      ],
       //需要按需自动引入的依赖包
       dts: '../auto-import.d.ts',
       //选择auto-import.d.ts生成的位置'
     }),
     Components({
+      include: [
+        /\.[tj]sx?$/, // .ts, .tsx, .js, .jsx
+        /\.vue$/,
+        /\.md$/, // .md
+      ],
       resolvers: [NaiveUiResolver()],
       dirs: ['../src/components'],
       dts: '../components.d.ts',

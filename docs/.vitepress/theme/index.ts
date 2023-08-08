@@ -1,13 +1,11 @@
-import { h, watch } from 'vue';
-import { useData, EnhanceAppContext } from 'vitepress';
+import { EnhanceAppContext, useData } from 'vitepress';
 import DefaultTheme from 'vitepress/theme';
+import { h, watch } from 'vue';
 
-import MNavVisitor from './components/MNavVisitor.vue';
-import MDocFooter from './components/MDocFooter.vue';
 import MAsideSponsors from './components/MAsideSponsors.vue';
+import MDocFooter from './components/MDocFooter.vue';
 import MNavLinks from './components/MNavLinks.vue';
-import { install } from 'naive-ui';
-import componentsInstall from '@/components/index';
+import MNavVisitor from './components/MNavVisitor.vue';
 
 import './styles/index.scss';
 
@@ -61,8 +59,8 @@ export default {
   enhanceApp({ app, router }: EnhanceAppContext) {
     app.component('MNavLinks', MNavLinks);
     app.provide('DEV', process.env.NODE_ENV === 'development');
-    app.use(install);
-    app.use(componentsInstall);
+    // app.use(install);
+    // app.use(componentsInstall);
     if (typeof window !== 'undefined') {
       watch(
         () => router.route.data.relativePath,
