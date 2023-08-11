@@ -10,12 +10,12 @@
 // import Macros from 'unplugin-vue-macros'
 // import VueMacros from 'unplugin-vue-macros/vite'
 // import DefineOptions from 'unplugin-vue-define-options/vite'
-import path from 'path';
-import AutoImport from 'unplugin-auto-import/vite';
-import { NaiveUiResolver } from 'unplugin-vue-components/resolvers';
-import Components from 'unplugin-vue-components/vite';
-import FullReload from 'vite-plugin-full-reload';
-import { defineConfig } from 'vitepress';
+import path from 'path'
+import AutoImport from 'unplugin-auto-import/vite'
+import { NaiveUiResolver } from 'unplugin-vue-components/resolvers'
+import Components from 'unplugin-vue-components/vite'
+import { defineConfig } from 'vitepress'
+import { MarkdownTransform } from './plugins/markdown-transform'
 export default {
   plugins: [
     // FullReload(['**/*.md']),
@@ -27,33 +27,37 @@ export default {
     // }),
     AutoImport({
       imports: [
-        'vue',
+        'vue'
         // '@vueuse/core',
         // 'vue-i18n', ,
       ],
       include: [
         /\.[tj]sx?$/, // .ts, .tsx, .js, .jsx
         /\.vue$/,
-        /\.md$/, // .md
+        /\.md$/ // .md
       ],
       //需要按需自动引入的依赖包
-      dts: '../auto-import.d.ts',
+      dts: '../auto-import.d.ts'
       //选择auto-import.d.ts生成的位置'
     }),
     Components({
       include: [
         /\.[tj]sx?$/, // .ts, .tsx, .js, .jsx
         /\.vue$/,
-        /\.md$/, // .md
+        /\.md$/ // .md
       ],
       resolvers: [NaiveUiResolver()],
       dirs: ['../src/components'],
-      dts: '../components.d.ts',
+      dts: '../components.d.ts'
     }),
+    MarkdownTransform()
   ],
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, '../../src'),
-    },
+      '@': path.resolve(__dirname, '../../src')
+    }
   },
-} as ReturnType<typeof defineConfig>['vite'];
+  ssr: {
+    noExternal: ['naive-ui']
+  }
+} as ReturnType<typeof defineConfig>['vite']

@@ -12,6 +12,9 @@ hero:
   actions:
     - text: 前端物语
       link: /fe/es6/
+    - text: 我的天那
+      link: /asd/shard1/
+      theme: alt
     - text: 前端导航
       link: /nav
       theme: alt

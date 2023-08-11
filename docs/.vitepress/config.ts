@@ -1,11 +1,11 @@
-import { createWriteStream } from 'node:fs';
-import path, { resolve } from 'node:path';
-import { SitemapStream } from 'sitemap';
-import { defineConfig, PageData } from 'vitepress';
+import { createWriteStream } from 'node:fs'
+import path, { resolve } from 'node:path'
+import { SitemapStream } from 'sitemap'
+import { defineConfig, PageData } from 'vitepress'
 
-import { head, nav, sidebar, algolia } from './configs';
-const links: { url: string; lastmod: PageData['lastUpdated'] }[] = [];
-import viteConfig from './vite.config';
+import { head, nav, sidebar, algolia } from './configs'
+const links: { url: string; lastmod: PageData['lastUpdated'] }[] = []
+import viteConfig from './vite.config'
 
 export default defineConfig({
   outDir: '../dist',
@@ -23,6 +23,18 @@ export default defineConfig({
   markdown: {
     lineNumbers: true,
     cache: false,
+    anchor: {
+      slugify(str) {
+        // return encodeURIComponent(str)
+        return str
+      }
+    },
+    preConfig(md) {
+      return md
+    },
+    config: (md) => {
+      return md
+    }
   },
 
   /* 主题配置 */
@@ -34,14 +46,14 @@ export default defineConfig({
     /* 右侧大纲配置 */
     outline: {
       level: 'deep',
-      label: '本页目录',
+      label: '本页目录'
     },
 
     socialLinks: [{ icon: 'github', link: 'https://github.com/maomao1996' }],
 
     footer: {
       message: '如有转载或 CV 的请标注本站原文地址',
-      copyright: 'Copyright © 2023-present xiaojun',
+      copyright: 'Copyright © 2023-present xiaojun'
     },
 
     darkModeSwitchLabel: '外观',
@@ -53,8 +65,8 @@ export default defineConfig({
 
     docFooter: {
       prev: '上一篇',
-      next: '下一篇',
-    },
+      next: '下一篇'
+    }
   },
 
   /* 生成站点地图 */
@@ -62,16 +74,16 @@ export default defineConfig({
     if (!/[\\/]404\.html$/.test(id))
       links.push({
         url: pageData.relativePath.replace(/((^|\/)index)?\.md$/, '$2'),
-        lastmod: pageData.lastUpdated,
-      });
+        lastmod: pageData.lastUpdated
+      })
   },
   buildEnd: async ({ outDir }) => {
-    const sitemap = new SitemapStream({ hostname: 'https://notes.fe-mm.com/' });
-    const writeStream = createWriteStream(resolve(outDir, 'sitemap.xml'));
-    sitemap.pipe(writeStream);
-    links.forEach((link) => sitemap.write(link));
-    sitemap.end();
-    await new Promise((r) => writeStream.on('finish', r));
+    const sitemap = new SitemapStream({ hostname: 'https://notes.fe-mm.com/' })
+    const writeStream = createWriteStream(resolve(outDir, 'sitemap.xml'))
+    sitemap.pipe(writeStream)
+    links.forEach((link) => sitemap.write(link))
+    sitemap.end()
+    await new Promise((r) => writeStream.on('finish', r))
   },
-  vite: viteConfig,
-});
+  vite: viteConfig
+})

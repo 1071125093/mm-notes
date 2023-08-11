@@ -1,3 +1,7 @@
-## `组件FsTestOne测试`
+---
+name: My Cool App
+---
 
-<!--@include: ./defaultDemo.md-->
+### 组件FsTestOne测试这样悔改吗`
+
+<!--@include: ./defaultDemo.demo.md-->
